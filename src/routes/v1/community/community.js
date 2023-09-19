@@ -10,7 +10,7 @@ import communityValidate from "../../../validations/community/communityValidatio
 //   getCommunityMeMember,
 // } from "../../../controllers/communityController.js";
 
-import { createCommunity, getAllMembers,getCommunity,getCommunityMeMember,getMyOwnedCommunity } from "../../../controllers/communityController.js";
+import { createCommunity, getAllMembers,getCommunity,getCommunityMeMember,getMyOwnedCommunity } from "../../../controllers/communityController/communityController.js";
 
 const router = Express.Router();
 
