@@ -62,6 +62,7 @@ export const signUp = async (req, res) => {
 };
 
 
+
 // Sign In route
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
