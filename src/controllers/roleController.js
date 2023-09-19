@@ -45,22 +45,21 @@ const createRole= async(req,res)=>{
 const getAll=async(req,res)=>{
 
     try {
-        const page = parseInt(req.query.page) || 1; // Get the page number from query parameters
-        const limit = parseInt(req.query.limit) || 10; // Set a default limit or get it from query parameters
+
+      const { page = 1, limit = 10 } = req.query;
+
+      const options = {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        
+      };
+     
+
+        const roles = await Role.paginate({}, options);
     
-        // Calculate the skip value to paginate the results
-        const skip = (page - 1) * limit;
+       
     
-        // Fetch all roles from the database with pagination
-        const roles = await Role.find().skip(skip).limit(limit);
-    
-        // Get the total number of roles (for pagination)
-        const totalRoles = await Role.countDocuments();
-    
-        // Calculate the total number of pages
-        const totalPages = Math.ceil(totalRoles / limit);
-    
-        const data = roles.map((role) => {
+        const data = roles.docs.map((role) => {
           return {
             id: role.id,
             name: role.name,
@@ -74,9 +73,9 @@ const getAll=async(req,res)=>{
           status: true,
           content: {
             meta: {
-              total: totalRoles,
-              pages: totalPages,
-              page: page,
+              total: roles.totalDocs,
+              pages: roles.totalPages,
+              page: roles.page,
             },
             data: data,
           },

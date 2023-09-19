@@ -82,7 +82,7 @@ export const signIn = async (req, res) => {
       });
     }
 
-    const token = jwt.sign({ email: email, _id: user._id }, secretKey);
+    const token = jwt.sign({ email: email, id: user._id }, secretKey);
 
     res.status(201).json({
       status: true,
@@ -107,10 +107,10 @@ export const signIn = async (req, res) => {
 
 // get me
 export const getMe = async (req, res) => {
-  const { email, _id } = req.user;
+  const { email, id } = req.user;
 
   try {
-    const user = await User.findById(_id);
+    const user = await User.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: "user not found" });
@@ -120,7 +120,7 @@ export const getMe = async (req, res) => {
       status: true,
       content: {
         data: {
-          id: user._id,
+          id: user.id,
           name: user.name,
           email: user.email,
           created_at: user.created_at,

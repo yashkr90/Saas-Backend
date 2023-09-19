@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Snowflake } from "@theinternetfolks/snowflake";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 // Define User Schema
 const userSchema = new mongoose.Schema({
@@ -40,10 +41,9 @@ const communitySchema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    unique: true,
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "User",
   },
   created_at: {
@@ -57,26 +57,29 @@ const communitySchema = new mongoose.Schema({
 });
 
 // Define Role Schema
-const roleSchema = new mongoose.Schema({
-  _id: {
-    type: String,
-    default: () => Snowflake.generate(),
-    unique: true,
+const roleSchema = new mongoose.Schema(
+  {
+    _id: {
+      type: String,
+      default: () => Snowflake.generate(),
+      unique: true,
+    },
+    name: {
+      type: String,
+      required: true,
+      minlength: 2,
+    },
+    created_at: {
+      type: Date,
+      default: Date.now,
+    },
+    updated_at: {
+      type: Date,
+      default: Date.now,
+    },
   },
-  name: {
-    type: String,
-    required: true,
-    minlength: 2,
-  },
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  updated_at: {
-    type: Date,
-    default: Date.now,
-  },
-},{ _id: false });
+  { _id: false }
+);
 
 // Define Member Schema
 const memberSchema = new mongoose.Schema({
@@ -86,15 +89,15 @@ const memberSchema = new mongoose.Schema({
     unique: true,
   },
   community: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "Community",
   },
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "User",
   },
   role: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "Role",
   },
   created_at: {
@@ -102,6 +105,9 @@ const memberSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+communitySchema.plugin(mongoosePaginate);
+roleSchema.plugin(mongoosePaginate);
 
 // Create MongoDB models based on the schemas
 const User = mongoose.model("User", userSchema);
