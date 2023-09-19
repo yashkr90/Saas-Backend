@@ -3,7 +3,9 @@ import Express from "express";
 import validate from "../../../../middleware/validate.js";
 import {signUpValidate, signInValidate} from "../../../../validations/user/userValidation.js";
 import authenticate from "../../../../middleware/authentication.js";
-import { signUp, signIn,getMe } from "../../../../controllers/userController.js";
+// import { signUp, signIn,getMe } from "../../../../controllers/userController.js";
+
+import {getMe,signIn,signUp} from "../../../../controllers/userController/userController.js";
 
 const router = Express.Router();
 

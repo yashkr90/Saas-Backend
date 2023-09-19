@@ -1,9 +1,8 @@
 import Express from "express";
-// import authenticate from "../../../middleware/authentication";
 import validate from "../../../middleware/validate.js";
 import roleValidate from "../../../validations/role/roleValidation.js";
-import { createRole,getAll } from "../../../controllers/roleController.js";
-
+// import { createRole,getAll } from "../../../controllers/roleController.js";
+import { getAll,createRole } from "../../../controllers/roleController/roleController.js";
 
 const router = Express.Router();
 

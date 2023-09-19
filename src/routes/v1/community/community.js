@@ -2,13 +2,15 @@ import Express from "express";
 import authenticate from "../../../middleware/authentication.js";
 import validate from "../../../middleware/validate.js";
 import communityValidate from "../../../validations/community/communityValidation.js";
-import {
-  createCommunity,
-  getCommunity,
-  getAllMembers,
-  getMyOwnedCommunity,
-  getCommunityMeMember,
-} from "../../../controllers/communityController.js";
+// import {
+//   createCommunity,
+//   getCommunity,
+//   getAllMembers,
+//   getMyOwnedCommunity,
+//   getCommunityMeMember,
+// } from "../../../controllers/communityController.js";
+
+import { createCommunity, getAllMembers,getCommunity,getCommunityMeMember,getMyOwnedCommunity } from "../../../controllers/communityController.js";
 
 const router = Express.Router();
 
