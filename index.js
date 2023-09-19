@@ -10,6 +10,7 @@ import bcrypt from "bcrypt";
 import roleRoute from "./src/routes/v1/role/role.js"
 import userRoute from "./src/routes/v1/user/auth/user.js";
 import communityRoute from "./src/routes/v1/community/community.js"
+import memberRoute from "./src/routes/v1/member/member.js"
 
 const port = process.env.PORT || 3000;
 
@@ -26,6 +27,7 @@ app.use(cors());
 app.use("/",roleRoute);
 app.use("/",userRoute);
 app.use("/",communityRoute);
+app.use("/",memberRoute);
 
 const MONGOURL = process.env.MONGOURL;
 

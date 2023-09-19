@@ -108,6 +108,8 @@ const memberSchema = new mongoose.Schema({
 
 communitySchema.plugin(mongoosePaginate);
 roleSchema.plugin(mongoosePaginate);
+userSchema.plugin(mongoosePaginate);
+memberSchema.plugin(mongoosePaginate);
 
 // Create MongoDB models based on the schemas
 const User = mongoose.model("User", userSchema);
