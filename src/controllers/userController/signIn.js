@@ -25,7 +25,8 @@ export const signIn = async (req, res) => {
           ],
         });
       }
-  
+
+      // jwt token using email and id
       const token = jwt.sign({ email: email, id: user._id }, secretKey);
   
       res.status(201).json({

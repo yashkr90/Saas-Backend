@@ -8,7 +8,8 @@ export const getAll = async (req, res) => {
         page: parseInt(page),
         limit: parseInt(limit),
       };
-  
+
+      // paginate roole
       const roles = await Role.paginate({}, options);
   
       const data = roles.docs.map((role) => {

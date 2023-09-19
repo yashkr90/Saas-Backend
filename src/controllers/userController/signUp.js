@@ -37,7 +37,8 @@ export const signUp = async (req, res) => {
         password: hashedPassword,
       });
       await newUser.save();
-  
+
+      // jwt token using name and email
       const token = jwt.sign({ name: name, email: email }, secretKey);
   
       res.status(201).json({

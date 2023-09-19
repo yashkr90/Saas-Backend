@@ -3,10 +3,6 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-// const jwt = require('jsonwebtoken');
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import roleRoute from "./src/routes/v1/role/role.js"
 import userRoute from "./src/routes/v1/user/auth/user.js";
 import communityRoute from "./src/routes/v1/community/community.js"
