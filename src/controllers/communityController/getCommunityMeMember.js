@@ -2,14 +2,14 @@ import { Community, Role, Member } from "../../models/model.js";
 
 export const getCommunityMeMember = async (req, res) => {
     try {
-      const userId = req.user.id; // Assuming you have access to the currently authenticated user's ID from the token
+      const userId = req.user.id; // currently authenticated user's ID from the token
       const { page = 1, limit = 10 } = req.query;
   
       // Convert query parameters to integers for pagination
       const currentPage = parseInt(page);
       const pageLimit = parseInt(limit);
   
-      // Query to retrieve the user's joined communities with pagination
+      // Query to retrieve the users joined communities with pagination
   
       const memberRoleId = await Role.find({ name: "Community Member" });
   
